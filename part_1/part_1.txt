@@ -1,0 +1,205 @@
+
+
+# 🏏 Deep Sequential Modeling of Cricket Bowling Strategy – Part 1 (Ball-Level Modeling)
+
+## 📌 Overview
+
+This project is **Part 1** of a multi-stage study on modeling cricket bowling strategies using deep learning.
+
+In this phase, the problem is simplified to focus **only on ball-level features**, without incorporating external match context such as batsman type, field placement, or match pressure.
+
+The goal is to establish a **baseline sequential model** using:
+
+* Recurrent Neural Networks (RNN)
+* Long Short-Term Memory (LSTM)
+* Gated Recurrent Units (GRU)
+
+---
+
+## 🎯 Objective
+
+Given a sequence of previous deliveries, predict the next ball’s:
+
+* 📍 Line
+* 📏 Length
+* ⚡ Speed
+
+---
+
+## 🧩 Scope of Part 1
+
+This phase intentionally limits the feature set to:
+
+### ✅ Included Features:
+
+* Line
+* Length
+* Speed
+* Over number
+* Ball number
+
+### ❌ Excluded Features:
+
+* Batsman type
+* Field placement
+* Match situation (powerplay, death overs, etc.)
+* Bowler intent or strategy
+* Pitch conditions
+
+👉 This makes Part 1 a **pure sequence learning problem**.
+
+---
+
+## ✨ Key Features
+
+* Sliding window sequence modeling
+* Multi-output regression
+* Comparison of RNN, LSTM, and GRU
+* Rolling prediction for future balls
+* Baseline performance benchmarking
+
+---
+
+## 🧠 Model Architectures
+
+### 🔹 Simple RNN
+
+* SimpleRNN (64 units)
+* Dense (32, ReLU)
+* Output Dense (3)
+
+### 🔹 LSTM
+
+* LSTM (64 units)
+* Dense (32, ReLU)
+* Output Dense (3)
+
+### 🔹 GRU
+
+* GRU (64 units)
+* Dense (32, ReLU)
+* Output Dense (3)
+
+---
+
+## ⚙️ Data Processing
+
+* Sorted sequentially by match, over, and ball
+* Normalized using MinMaxScaler
+* Converted into sequences using sliding window
+
+### Sequence Setup:
+
+* Input: 6 previous balls → `(6, 5)`
+* Output: Next ball → `(3)`
+
+---
+
+## 🧪 Training Setup
+
+* Loss: Mean Squared Error (MSE)
+* Optimizer: Adam
+* Epochs: 10
+* Batch Size: 32
+* Train/Test Split: 80/20
+
+---
+
+## 📈 Results
+
+| Model | Performance          |
+| ----- | -------------------- |
+| RNN   | Highest error        |
+| GRU   | Moderate performance |
+| LSTM  | Lowest MSE           |
+
+⚠️ **Important Observation:**
+
+* All models produce **negative R² scores**
+* Indicates poor predictive power in this setup
+
+---
+
+## 💡 Key Insight (Very Important)
+
+This part demonstrates that:
+
+> **Ball-level sequential data alone is insufficient to model real-world bowling strategies effectively.**
+
+Even advanced models like LSTM fail without contextual information.
+
+---
+
+## 🔁 Rolling Prediction
+
+* Input: First 6 balls
+* Output: Next 18 predicted balls (iterative forecasting)
+
+Shows how models behave in real sequential prediction scenarios.
+
+---
+
+## ⚠️ Limitations
+
+* No contextual understanding
+* Limited feature representation
+* Strategy cannot be inferred from ball sequence alone
+
+---
+
+## 🔮 Next Steps (Part 2 and Beyond)
+
+Future parts of this project will improve performance by introducing:
+
+* 🧑‍🤝‍🧑 Player-level features (batsman, bowler)
+* 🏟️ Match context (overs, pressure situations)
+* 🎯 Tactical features (field placement, match phase)
+* 🤖 Advanced architectures (Attention, Transformers)
+
+---
+
+## 🛠️ Tech Stack
+
+* Python
+* TensorFlow / Keras
+* NumPy, Pandas
+* Scikit-learn
+* Matplotlib
+
+---
+
+## 📂 Project Structure
+
+```bash
+project/
+│── data/
+│── notebooks/
+│── models/
+│── results/
+│── README.md
+```
+
+---
+
+## 👨‍🎓 Author
+
+**Akash N**
+DA25M536
+Indian Institute of Technology Madras
+
+---
+
+## 📚 Course
+
+DA6401W – Deep Learning
+April 2026
+
+---
+
+## 📜 License
+
+Academic use only.
+
+---
+
+
